@@ -40,9 +40,47 @@ Example output with included CSV file
 18 2016-10-31T17:19:47Z 38.88146063 -76.98961269 20003
 Processed 98 rows
 S0311 codes: 6
-Invalid rows: 0
 </pre>
 
+A C++ class was done to read the CSV files. It reads the following 4 cases:
+------------
+
+<pre>
+1,field 2,field 3,
+1,field 2,"field 3 quoted, with separator",
+1,field 2,"field 3
+with newline",
+1,field 2,"field 3
+with newline and separator,",
+</pre>
+
+C++ class usage
+------------
+
+Iterate until an empty row is returned (end of file). A row is a vector where each entry is a CSV column. 
+
+```c++
+read_csv_t csv;
+csv.open("../test.csv");
+std::vector<std::string> row;
+while (true)
+{
+  row = csv.read_row();
+  if (row.size() == 0)
+  {
+    break;
+  }
+}
+```
+
+Example to extract a column. This examples detects if column 2 is the string "S0311" and prints column 22
+
+```c++
+if (row.at(2).compare("S0311") == 0)
+{
+  std::cout << row.at(22).c_str() << std::endl;
+}
+```
 
 CSV reference
 ------------
