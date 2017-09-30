@@ -63,15 +63,15 @@ int main(int argc, char *argv[])
   size_t rows = 0;
   std::vector<std::string> row;
   file_name += ".s0311.csv";
-  std::ofstream ofs(file_name);
+  std::ofstream ofs(file_name.c_str());
   while (true)
   {
     row = csv.read_row();
-    rows++;
     if (row.size() == 0)
     {
       break;
     }
+    rows++;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
     //detect field 2 (code),
