@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <fstream>
 #include "csv.hh"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +62,8 @@ int main(int argc, char *argv[])
   size_t found = 0;
   size_t rows = 0;
   std::vector<std::string> row;
+  file_name += ".s0311.csv";
+  std::ofstream ofs(file_name);
   while (true)
   {
     row = csv.read_row();
@@ -79,12 +82,19 @@ int main(int argc, char *argv[])
     {
       found++;
       std::cout << row.at(6).c_str() << " ";
-      std::cout << row.at(20).c_str() << " ";;
-      std::cout << row.at(21).c_str() << " ";;
+      std::cout << row.at(20).c_str() << " ";
+      std::cout << row.at(21).c_str() << " ";
       std::cout << row.at(22).c_str() << std::endl;
+
+      ofs << row.at(6).c_str() << ","
+        << row.at(20).c_str() << ","
+        << row.at(21).c_str() << ","
+        << row.at(22).c_str() << ","
+        << std::endl;
     }
   }
 
+  ofs.close();
   std::cout << "Processed " << rows << " rows" << std::endl;
   std::cout << "S0311 codes: " << found << std::endl;
   return 0;
