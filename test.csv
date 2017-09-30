@@ -1,0 +1,7 @@
+1,field 2,field 3,
+1,field 2,"field 3 quoted, with separator",
+1,field 2,"field 3
+with newline",
+1,field 2,"field 3
+with newline and separator,",
+
