@@ -21,7 +21,7 @@ read_csv_t::read_csv_t()
 int read_csv_t::open(const std::string &file_name)
 {
   m_ifs.open(file_name.c_str());
-  if (!m_ifs.is_open())
+  if (!m_ifs)
   {
     return -1;
   }
