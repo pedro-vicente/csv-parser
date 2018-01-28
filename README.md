@@ -1,4 +1,11 @@
 # csv-parser
+
+
+| Build status  | Systems / Compilers |
+| ------------- | ------------------------------------------ |
+| [![Visual Studio](https://ci.appveyor.com/api/projects/status/t6i95u07gw1gqhql/branch/master?svg=true)](https://ci.appveyor.com/project/pedro-vicente/csv-parser/branch/master) | Windows (Visual Studio 2015) |
+
+
 Contribution for Code for DC - The Rat Hack
 
 https://github.com/eclee25/the-rat-hack
