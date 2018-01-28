@@ -4,6 +4,17 @@
 #include "csv.hh"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+//usage
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void usage()
+{
+  std::cout << "usage: ./read_test -f FILE" << std::endl;
+  std::cout << "-f FILE: CSV file" << std::endl;
+  exit(0);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 //main
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -12,9 +23,34 @@ int main(int argc, char *argv[])
   read_csv_t csv;
   std::string file_name;
 
-  if (csv.open("../test.csv") < 0)
+  if (argc == 1)
   {
-    std::cout << "Cannot open file ../test.csv" << std::endl;
+    usage();
+  }
+
+  for (int i = 1; i < argc; i++)
+  {
+    if (argv[i][0] == '-')
+    {
+      switch (argv[i][1])
+      {
+      case 'f':
+        file_name = argv[i + 1];
+        i++;
+        break;
+      default:
+        usage();
+      }
+    }
+    else
+    {
+      usage();
+    }
+  }
+
+  if (csv.open(file_name) < 0)
+  {
+    std::cout << "Cannot open file " << file_name.c_str() << std::endl;
     return 1;
   }
 

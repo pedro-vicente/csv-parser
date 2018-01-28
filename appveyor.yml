@@ -4,3 +4,7 @@ before_build:
 build:
   project: build\read_csv.sln
   verbosity: minimal
+  
+test_script:
+  - build\Debug\read_dc311.exe -f dc_311-2016_100.csv
+  - build\Debug\read_test.exe -f test.csv
