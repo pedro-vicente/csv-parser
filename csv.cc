@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include "csv.hh"
 
+#define TAB_SEPARATOR
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //read_csv_t::read_csv_t
 /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +50,11 @@ std::vector<std::string> read_csv_t::read_row()
       //push column if not in quote mode
       /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifdef TAB_SEPARATOR
+    case '\t':
+#else
     case ',':
+#endif
       if (quote_mode == true)
       {
         column += c;
@@ -83,6 +89,8 @@ std::vector<std::string> read_csv_t::read_row()
       }
       else
       {
+        //push last column
+        row.push_back(column);
         return row;
       }
       break;
